@@ -1,0 +1,1 @@
+docker build -t cloudflinger/demo-nonhttp-app:latest .
