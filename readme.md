@@ -72,7 +72,7 @@ kubectl apply -f operator.yml
 kubectl apply -f app.yml
 ```
 
-### Watch it work
+## Watch it work
 
 ```
 kubectl -n cloudflinger-demo get pods
