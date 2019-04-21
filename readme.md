@@ -1,6 +1,6 @@
 # Getting Started
 
-You'll need a kubernetes cluster and the ability to insert specs into the cluster. We use `kubectl` in this demo.
+You'll need a kubernetes cluster and the ability to insert specs into the cluster. You can use either `helm` or `kubectl` in this demo.
 
 ## Set up a demo DigitalOcean Cluster (Optional)
 
