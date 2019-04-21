@@ -35,7 +35,9 @@ helm install ./charts/cloudflinger-operator-demo/ --namespace cloudflinger-demo 
 
 ### Install App Release
 
-`helm install ./charts/cloudflinger-app-demo/ --namespace cloudflinger-demo --name cloudflinger-app-demo`
+```
+helm install ./charts/cloudflinger-app-demo/ --namespace cloudflinger-demo --name cloudflinger-app-demo
+```
 
 ## Kubectl
 
