@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "cloudflinger-demo.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "cloudflinger-demo.name" . }}
+    helm.sh/chart: {{ include "cloudflinger-demo.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "cloudflinger-demo.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "cloudflinger-demo.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+      serviceAccountName: cloudflinger-operator
+      containers:
+        - name: app-operator
+          # Replace this with the built image name
+          image: cloudflinger/app-operator
+          command:
+          - app-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              value: "{{ .Release.Namespace }}"
+            - name: CLOUDFLINGER_KEY
+              value: {{ .Values.licenseKey }}
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "app-operator"
+          resources:
+            limits:
+              cpu: 500m
+              memory: "512Mi"
+            limits:
+              cpu: 250m
+              memory: "50Mi"

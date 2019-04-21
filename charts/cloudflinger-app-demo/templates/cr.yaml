@@ -1,0 +1,53 @@
+---
+apiVersion: api.cloudflinger.com/v1alpha1
+kind: HttpApp
+metadata:
+  name: nonhttp-app
+spec:
+  image:
+    name: cloudflinger/demo-nonhttp-app:latest
+  env: []
+  # these pass through k8s specs
+  healthChecks:
+    readiness:
+      exec:
+        command:
+        - /bin/sh
+        - -c
+        - "nc -zv localhost 3000"
+    liveness:
+      exec:
+        command:
+        - /bin/sh
+        - -c
+        - "nc -zv localhost 3000"
+  ingress:
+    port: 3000
+  revision: "1.0.0"
+---
+apiVersion: api.cloudflinger.com/v1alpha1
+kind: HttpApp
+metadata:
+  name: nonhttp-client
+spec:
+  image:
+    name: cloudflinger/demo-nonhttp-client:latest
+  env:
+    - name: APP_HOST
+      value: nonhttp-app
+    - name: APP_PORT
+      value: "3000"
+  # these pass through k8s specs
+  healthChecks:
+    readiness: 
+      exec:
+        command:
+        - /bin/sh
+        - -c
+        - "nc -zv $APP_HOST $APP_PORT"
+    liveness: 
+      exec:
+        command:
+          - "true"
+  revision: "1.0.0"
+---
