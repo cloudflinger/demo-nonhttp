@@ -4,7 +4,7 @@ kind: HttpApp
 metadata:
   name: nonhttp-app
   # Do not change namespace. The demo is tied to a single namespace.
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 spec:
   image:
     name: cloudflinger/demo-nonhttp-app:latest
@@ -32,7 +32,7 @@ kind: HttpApp
 metadata:
   name: nonhttp-client
   # Do not change namespace. The demo is tied to a single namespace.
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 spec:
   image:
     name: cloudflinger/demo-nonhttp-client:latest

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: REPLACE_NAMESPACE
+  name: cloudflinger-demo
 ---
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
@@ -28,7 +28,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: cloudflinger-operator
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 automountServiceAccountToken: true
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -36,7 +36,7 @@ kind: Role
 metadata:
   creationTimestamp: null
   name: cloudflinger-operator
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 rules:
   - apiGroups:
     - ""
@@ -97,12 +97,12 @@ kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: cloudflinger-operator
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 subjects:
 - kind: ServiceAccount
   name: cloudflinger-operator
   # Replace this with the namespace the operator is deployed in.
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 roleRef:
   kind: Role
   name: cloudflinger-operator
@@ -112,7 +112,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloudflinger-operator
-  namespace: REPLACE_NAMESPACE
+  namespace: cloudflinger-demo
 spec:
   replicas: 1
   selector:
@@ -133,9 +133,9 @@ spec:
           imagePullPolicy: Always
           env:
             - name: WATCH_NAMESPACE
-              value: "REPLACE_NAMESPACE"
+              value: "cloudflinger-demo"
             - name: CLOUDFLINGER_KEY
-              value: REPLACE_LICENSE_KEY
+              value: heritage
             - name: POD_NAME
               valueFrom:
                 fieldRef:

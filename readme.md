@@ -60,9 +60,9 @@ This is where you specify port, command, etc.
 You'll need to update the license key in order to authenticate for the demo.
 
 ```
-$ sed -i 's|REPLACE_LICENSE_KEY|GET_FROM_ACCOUNT|g' app.yml
+$ sed -i 's|REPLACE_LICENSE_KEY|GET_FROM_ACCOUNT|g' operator.yml
 # On OSX use:
-$ sed -i "" 's|REPLACE_LICENSE_KEY|GET_FROM_ACCOUNT|g' app.yml
+$ sed -i "" 's|REPLACE_LICENSE_KEY|GET_FROM_ACCOUNT|g' operator.yml
 ```
 
 ### Apply the Manifests to your k8s cluster
