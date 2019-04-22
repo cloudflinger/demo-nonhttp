@@ -53,7 +53,7 @@ $ sed -i "" 's|REPLACE_NAMESPACE|cloudflinger-demo|g' app.yml
 $ sed -i "" 's|REPLACE_NAMESPACE|cloudflinger-demo|g' operator.yml
 ```
 
-### Customize app.yml
+### Customize app.yml / Insert License Key
 
 This is where you specify port, command, etc.
 
